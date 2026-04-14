@@ -88,9 +88,11 @@ npm start
 4. Load Books
 Visit http://localhost:8000/api/fetch/ to fetch books from Google Books API
 
-📸 Screenshots
-https://./screenshots/dashboard.png
-https://./screenshots/qa.png
+## 📸 Screenshots
+
+![Dashboard](./screenshots/dashboard.png)
+![Q&A Machine Learning](./screenshots/qa.png)
+![Q&A Recommendations](./screenshots/screenshot3.png)
 
 💬 Sample Questions & Answers
 Q: What is artificial intelligence?
