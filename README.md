@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<<<<<<<
-=======
->>>>>>>
-=======
 # 📚 BookMind AI – Intelligent Book Insight Platform
 
 A full-stack AI-powered document intelligence platform that collects, processes, and analyzes book data using Retrieval-Augmented Generation (RAG). The system enables users to explore books, generate insights, and ask intelligent questions.
@@ -11,235 +6,126 @@ A full-stack AI-powered document intelligence platform that collects, processes,
 
 ## 🚀 Features
 
-* 📖 Automated book data collection (web scraping)
-* 🧠 AI-powered insights:
-
-  * Book summaries
-  * Genre classification
-  * Smart recommendations
-* ❓ Question Answering using RAG pipeline
-* 🔍 Semantic search using embeddings
-* 🌐 REST APIs for all functionalities
-* 💻 Interactive frontend UI
+- 📖 Automated book data collection (Google Books API)
+- 🧠 AI-powered insights (Summaries, recommendations)
+- ❓ Question Answering using RAG pipeline
+- 🔍 Semantic search using embeddings
+- 🌐 REST APIs for core functionalities
+- 💻 React frontend with Tailwind CSS
 
 ---
 
 ## 🏗️ Tech Stack
 
 ### Backend
-
-* Python
-* Django REST Framework
-* MySQL (metadata storage)
-* FAISS / ChromaDB (vector database)
+- Python 3.13+
+- Django REST Framework
+- SQLite3 (metadata storage)
+- ChromaDB (vector database)
 
 ### Frontend
-
-* React.js / Next.js
-* Tailwind CSS
+- React.js
+- Tailwind CSS
+- Axios
 
 ### AI Integration
+- Sentence Transformers (all-MiniLM-L6-v2)
+- RAG pipeline for Q&A
+- Support for OpenAI API / LM Studio
 
-* OpenAI API / LM Studio (Local LLM)
-* Sentence Transformers (for embeddings)
-
-### Automation
-
-* Selenium (for web scraping)
-
----
-
-## ⚙️ System Architecture
-
-1. Scrape book data from web sources
-2. Store metadata in database
-3. Generate embeddings from text
-4. Store embeddings in vector database
-5. User query → embedding → similarity search
-6. Retrieve context → generate answer using LLM
+### Data Source
+- Google Books API
 
 ---
 
 ## 🔗 API Endpoints
 
-### 📥 GET APIs
+### GET APIs
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/list/` | List all books |
 
-* `GET /api/books/`
-  List all books
-
-* `GET /api/books/<id>/`
-  Get detailed information about a book
-
-* `GET /api/books/recommendations/`
-  Get related book recommendations
-
----
-
-### 📤 POST APIs
-
-* `POST /api/books/upload/`
-  Upload and process new books
-
-* `POST /api/ask/`
-  Ask questions about books (RAG-based)
+### POST APIs
+| Endpoint | Description |
+|----------|-------------|
+| `POST /api/ask/` | Ask questions about books |
 
 #### Example Request:
-
 ```json
 {
-  "question": "What is this book about?"
+  "question": "What is artificial intelligence?"
 }
-```
+Example Response:
+json
+{
+  "answer": "Artificial Intelligence (AI) is the simulation of human intelligence in machines."
+}
+🤖 AI Features Implemented
+✅ Question Answering (RAG Pipeline)
 
----
+✅ Semantic Search with Embeddings
 
-## 🤖 AI Features Implemented
+🔄 Book Summaries (via RAG)
 
-* ✅ Summary Generation
-* ✅ Genre Classification
-* ✅ Recommendation Logic
-* ✅ Question Answering (RAG Pipeline)
+🔄 Recommendations (via RAG)
 
----
-
-## 🧠 RAG Pipeline
-
-* Generate embeddings for user query
-* Perform similarity search on stored book chunks
-* Retrieve relevant context
-* Generate answer using LLM
-
----
-
-## 🖥️ Frontend Pages
-
-### 📊 Dashboard
-
-* Displays all books
-* Shows title, author, description
-
-### 📘 Book Detail Page
-
-* Detailed view of selected book
-
-### ❓ Q&A Interface
-
-* User question input
-* AI-generated answer output
-
----
-
-## 🛠️ Setup Instructions
-
-### 1. Clone Repository
-
-```bash
+🛠️ Setup Instructions
+1. Clone Repository
+bash
 git clone https://github.com/Ayushman-Singh-26/bookmind_ai.git
 cd bookmind_ai
-```
-
----
-
-### 2. Backend Setup
-
-```bash
+2. Backend Setup
+bash
 cd backend
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-```
-
----
-
-### 3. Frontend Setup
-
-```bash
+3. Frontend Setup
+bash
 cd frontend
 npm install
 npm start
-```
+4. Load Books
+Visit http://localhost:8000/api/fetch/ to fetch books from Google Books API
 
----
+📸 Screenshots
+https://./screenshots/dashboard.png
+https://./screenshots/qa.png
 
-### 4. Environment Variables
+💬 Sample Questions & Answers
+Q: What is artificial intelligence?
+A: Artificial Intelligence (AI) is the simulation of human intelligence in machines. Key topics include machine learning, neural networks, and natural language processing.
 
-Create a `.env` file:
+Q: Recommend similar books
+A: Based on your interest in AI, I recommend 'Artificial Intelligence: A Modern Approach' and 'Artificial Intelligence Basics'.
 
-```
-OPENAI_API_KEY=your_api_key
-```
+Q: What is machine learning?
+A: Machine Learning is a subset of AI that enables systems to learn from data.
 
----
-
-## 📸 Screenshots
-
-> Add your screenshots in a folder named `screenshots`
-
-### Dashboard
-
-![Dashboard](./screenshots/dashboard.png)
-
-### Book Detail Page
-
-![Book Detail](./screenshots/book_detail.png)
-
-### Q&A Interface
-
-![Q\&A](./screenshots/qa.png)
-
----
-
-## 💬 Sample Questions & Answers
-
-**Q1: What is this book about?**
-➡️ Generates a summary of the book
-
-**Q2: Recommend similar books**
-➡️ Suggests related books
-
-**Q3: What genre is this book?**
-➡️ Predicts genre using AI
-
----
-
-## 📂 Project Structure
-
-```
+📂 Project Structure
+text
 bookmind_ai/
 ├── backend/
+│   ├── books/
+│   ├── db.sqlite3
+│   └── manage.py
 ├── frontend/
+│   └── src/
 ├── screenshots/
 ├── README.md
-├── requirements.txt
-```
+└── requirements.txt
+🧪 Testing
+bash
+# List books
+curl http://localhost:8000/api/list/
 
----
-
-## 🧪 Testing
-
-* Upload sample books
-* Test API endpoints using Postman
-* Use Q&A interface for queries
-
----
-
-## ✨ Bonus Features
-
-* Efficient embedding-based search
-* Scalable backend APIs
-* Clean UI design
-* Modular architecture
-
----
-
-## 👨‍💻 Author
-
-**Ayushman Singh**
+# Ask a question
+curl -X POST http://localhost:8000/api/ask/ \
+  -H "Content-Type: application/json" \
+  -d "{\"question\": \"What is AI?\"}"
+👨‍💻 Author
+Ayushman Singh
 GitHub: https://github.com/Ayushman-Singh-26
+⭐ Final Note
+This project demonstrates a full-stack AI application using RAG, combining backend APIs, frontend UI, and intelligent data processing for book insights.
 
----
-
-## ⭐ Final Note
-
-This project demonstrates a complete full-stack AI application using RAG, combining backend APIs, frontend UI, and intelligent data processing.
->>>>>>> 2a75cb5a0e491ba6df21b02a023b649fbf0454dd
